@@ -1,0 +1,174 @@
+---
+title: "個人的な📝"
+date: "`r as.POSIXct(system(paste('stat -f \"%SB\" -t \"%Y-%m-%d\" ',knitr::current_input()),intern = T))`"
+author: kawaitel
+output: 
+  rmdformats::robobook:
+    highlight: kate
+    number_sections: true
+    lightbox: true
+    gallery: true
+    self_contained: true
+    toc_float: true
+    md_extensions: -ascii_identifiers
+    use_bookdown: true
+    code_folding: none # none hide show
+    df_print: paged
+    code_download: true
+    keep_md: no
+    includes:
+      in_header: "favicon.html" 
+  markdown:
+    canonical: true
+---
+
+```{css,echo=F}
+div.page-inner {
+  max-width: 1000px !important;
+}
+.note {
+  padding: 1em;
+  background: red;
+  color: white;
+  border: 2px solid red;
+  border-radius: 10px;
+}
+.center {
+  text-align: center;
+}
+.book .book-body .page-inner section.normal h1 {
+  font-size: 21px;
+}
+.book .book-body .page-inner section.normal h2, 
+.book .book-body .page-inner section.normal h3, 
+.book .book-body .page-inner section.normal h4 {
+  font-size: 14px;
+}
+
+h1.title {
+  color: DarkRed;
+}
+h1 { /* Header 1 */
+  color: DarkBlue;
+}
+h2 { /* Header 2 */
+  color: DarkBlue;
+}
+
+.kbd-key {
+  display: inline-block;
+  margin: 0 0.2em;
+  padding: 0.5em 0.7em; 
+  border: solid 1px #e0e0e0;
+  background: #C0C0C0;
+  border-radius: 2px;
+  vertical-align: middle;
+  font-size: 0.9em;
+  line-height: 1.1;
+}
+```
+
+```{r setup, include=FALSE}
+## Global options
+knitr::opts_chunk$set(cache = FALSE, warning=FALSE, message=FALSE, eval=FALSE)
+```
+
+**[GitHub Pages](https://docs.github.com/ja/pages/getting-started-with-github-pages/about-github-pages){target="_blank"}にRmarkdownから生成したhtmlファイルを公開する手順**
+
+-   GitHub リポジトリ名はgithub.ioをつける
+
+-   リポジトリのvisibilityはpublicにすること
+
+-   ファイル名は`index.Rmd`とする
+
+# 設定の変更 {.unnumbered}
+
+gitコマンドはデフォルトで[ファイル名の大文字・小文字の変更は検知しない]{style="color:Red"}設定になっているので変更する
+
+```{bash}
+git config core.ignorecase false
+git config -l --local | grep core.ignorecase
+```
+
+# ローカルリポジトリの作成 {.unnumbered}
+
+作業ディレクトリを作成する
+
+```{bash}
+mkdir git_memo && cd $_
+
+git init
+
+git status
+```
+
+# RMarkDownのレンダリング {.unnumbered}
+
+index.Rmdファイルからindex.htmlを生成する、RStudioからは<kbd class="kbd-key">⌘</kbd> + <kbd class="kbd-key">shift</kbd> + <kbd class="kbd-key">k</kbd>がショートカット
+
+```{r}
+rmarkdown::render(input = 'index.Rmd')
+```
+
+# GitHubにリポジトリを作成 {.unnumbered}
+
+[gh](https://cli.github.com/manual/){target="_blank"}コマンドでリモートリポジトリを作成
+
+```{bash}
+gh repo create git_memo.github.io  --public -d 'githubの使い方のメモ'
+
+# 確認
+gh repo list
+```
+
+# リポートリポジトリのリンク {.unnumbered}
+
+```{bash}
+git remote add origin https://github.com/kawaitel/git_memo.github.io
+# 確認
+git remote -v
+```
+
+<!-- もしくは -->
+
+<!-- Rstudioから実行する方法は [リモートリポジトリを設定する](https://qiita.com/uri/items/6b94609f156173ed43ed#リモートリポジトリを設定する){.uri} -->
+
+# リポジトリにプッシュ {.unnumbered}
+
+```{bash}
+git add .
+git add README.md
+git commit -m "first commit"
+git push -f origin main
+```
+
+# GitHub Pagesの設定 {.unnumbered}
+
+レポジトリの`Settings`から**Pages**を選び**Branch**を`main`に変更する
+
+![](images/paste-60E71CFB.png)
+
+::: {.alert .alert-warning}
+**warning** リモートリポジトリのブランチ名は`main`である前提です
+:::
+
+# Links {.unnumbered}
+
+公開されたGitHub Pagesは
+
+<https://kawaitel.github.io/git_memo.github.io>
+
+このリポジトリは
+
+<https://github.com/kawaitel/git_memo.github.io>
+
+
+
+<!-- ＃ Githubのリポジトリ履歴を初期化する -->
+<!-- ```{bash} -->
+<!-- rm -rf .gitでGitフォルダーを削除する -->
+<!-- git initでGitファイルを作り直す -->
+<!-- git add *でローカルリポジトリ内の全てのファイルをステージングに移動する -->
+<!-- git commit -a -m "Initial Commit(初期状態のコメント)"でコミットする -->
+<!-- git remote add origin (手順2でコピーしたURL)でリモートリポジトリを追加する -->
+<!-- ``` -->
