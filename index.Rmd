@@ -163,6 +163,9 @@ git push -f origin main
 <https://github.com/kawaitel/git_memo.github.io>
 
 
+Gitの解説（わかりやすい）
+
+<https://github.com/kaityo256/github>
 
 <!-- ＃ Githubのリポジトリ履歴を初期化する -->
 <!-- ```{bash} -->
