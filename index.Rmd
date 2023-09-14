@@ -73,7 +73,7 @@ h2 { /* Header 2 */
 knitr::opts_chunk$set(cache = FALSE, warning=FALSE, message=FALSE, eval=FALSE)
 ```
 
-**[GitHub Pages](https://docs.github.com/ja/pages/getting-started-with-github-pages/about-github-pages){target="_blank"}にRmarkdownから生成したhtmlファイルを公開する手順**
+[**GitHub Pages**](https://docs.github.com/ja/pages/getting-started-with-github-pages/about-github-pages){target="_blank"}**にRmarkdownから生成したhtmlファイルを公開する手順**
 
 -   GitHub リポジトリ名はgithub.ioをつける
 
@@ -152,6 +152,16 @@ git push -f origin main
 **warning** リモートリポジトリのブランチ名は`main`である前提です
 :::
 
+これで無事、RmarkdownからHtmlファイルを生成して、静的WebサイトとしてGitHub Pagesに公開できたと思います
+
+# memo {.unnumbered}
+
+このページの右上の`Code` ボタンを押すとこのページを生成したindex.Rmdファイルをダウンロードすることができます。 (Safariでは動作しません)
+
+![](images/paste-43FFFF27.png){width="200"}
+
+ダウンロードされたindex.Rmd単独でレンダリングすると、ファビコンを指定したファイルがリンクできないのでエラーになります。このリポジトリをgit cloneしてレンダリングしてください
+
 # Links {.unnumbered}
 
 公開されたGitHub Pagesは
@@ -162,16 +172,22 @@ git push -f origin main
 
 <https://github.com/kawaitel/git_memo.github.io>
 
-
 Gitの解説（わかりやすい）
 
 <https://github.com/kaityo256/github>
 
 <!-- ＃ Githubのリポジトリ履歴を初期化する -->
+
 <!-- ```{bash} -->
+
 <!-- rm -rf .gitでGitフォルダーを削除する -->
+
 <!-- git initでGitファイルを作り直す -->
+
 <!-- git add *でローカルリポジトリ内の全てのファイルをステージングに移動する -->
+
 <!-- git commit -a -m "Initial Commit(初期状態のコメント)"でコミットする -->
+
 <!-- git remote add origin (手順2でコピーしたURL)でリモートリポジトリを追加する -->
+
 <!-- ``` -->
